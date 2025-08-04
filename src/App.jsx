@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Book, User, MessageSquare, Star, Menu, X, ExternalLink, Mail, Facebook, Instagram } from 'lucide-react'
 import './App.css'
 import bookCover from './assets/book_cover_concept.jpg'
+import ContactForm from './src/ContactForm.jsx'
+
 
 // Navigation Component
 const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
@@ -258,13 +260,13 @@ const AboutPage = () => {
           <div className="text-center">
             <h3 className="text-xl font-serif font-bold text-white mb-4">Connect with Matthew</h3>
             <div className="flex justify-center space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <link to='/contact' className="text-gray-400 hover:text-white transition-colors">
                 <Mail size={24} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              </link>
+              <a href="https://www.facebook.com/profile.php?id=61578807073690" className="text-gray-400 hover:text-white transition-colors">
                 <Facebook size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">  
                 <Instagram size={24} />
               </a>
             </div>
@@ -301,10 +303,10 @@ const ReviewsPage = () => {
               Please consider leaving a review on:
             </p>
             <div className="grid md:grid-cols-3 gap-4">
-              <a href="#" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
+              <a href="https://a.co/d/giDgp2B" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
                 Amazon
               </a>
-              <a href="#" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
+              <a href="https://www.goodreads.com/book/show/239557654-on-her-skin-written" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
                 Goodreads
               </a>
               <a href="#" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
@@ -438,9 +440,9 @@ const Footer = () => {
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <link to="/contact" className="text-gray-400 hover:text-white transition-colors">
                 <Mail size={20} />
-              </a>
+              </link>
             </div>
           </div>
         </div>
@@ -469,6 +471,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/contact" element={<ContactForm />} />
           </Routes>
         </AnimatePresence>
         
