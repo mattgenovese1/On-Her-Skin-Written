@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Book, User, MessageSquare, Star, Menu, X, ExternalLink, Mail, Facebook, Instagram } from 'lucide-react'
 import './App.css'
 import bookCover from './assets/book_cover_concept.jpg'
-import ContactForm from './src/ContactForm.jsx'
+import ContactForm from './ContactForm.jsx'
 
 
 // Navigation Component
