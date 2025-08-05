@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Book, User, MessageSquare, Star, Menu, X, ExternalLink, Mail, Facebook, Instagram } from 'lucide-react'
 import './App.css'
 import bookCover from './assets/book_cover_concept.jpg'
-import ContactForm from './src/ContactForm.jsx'
+import ContactForm from './ContactForm.jsx'
 
 
 // Navigation Component
@@ -260,9 +260,9 @@ const AboutPage = () => {
           <div className="text-center">
             <h3 className="text-xl font-serif font-bold text-white mb-4">Connect with Matthew</h3>
             <div className="flex justify-center space-x-6">
-              <link to='/contact' className="text-gray-400 hover:text-white transition-colors">
+              <Link to='/contact' className="text-gray-400 hover:text-white transition-colors">
                 <Mail size={24} />
-              </link>
+              </Link>
               <a href="https://www.facebook.com/profile.php?id=61578807073690" className="text-gray-400 hover:text-white transition-colors">
                 <Facebook size={24} />
               </a>
@@ -370,7 +370,7 @@ const BlogPage = () => {
           
           <div className="text-center mb-12">
             <p className="text-xl text-gray-400">
-              Insights, reflections, and behind-the-scenes thoughts from Matthew Genovese
+              Thoughts on writing, literature, and the creative process from Matthew Genovese.
             </p>
           </div>
 
@@ -384,24 +384,23 @@ const BlogPage = () => {
                 viewport={{ once: true }}
                 className="bg-black/40 p-8 rounded-lg border border-gray-800 hover:border-red-900/50 transition-colors"
               >
-                <h2 className="text-2xl font-serif font-bold text-white mb-3">
-                  <a href={`#${post.slug}`} className="hover:text-red-400 transition-colors">
-                    {post.title}
-                  </a>
-                </h2>
-                <p className="text-red-400 text-sm mb-4">{post.date}</p>
-                <p className="text-gray-300 leading-relaxed">{post.excerpt}</p>
+                <h2 className="text-2xl font-serif font-bold text-white mb-4">{post.title}</h2>
+                <p className="text-gray-400 mb-4">{post.date}</p>
+                <p className="text-gray-300 mb-6 leading-relaxed">{post.excerpt}</p>
+                <button className="text-red-400 hover:text-red-300 font-medium transition-colors">
+                  Read More →
+                </button>
               </motion.article>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-gray-400 mb-4">
-              More blog posts coming soon. Subscribe to stay updated on new content.
+          <div className="mt-16 text-center">
+            <p className="text-gray-400 mb-6">
+              Want to be notified when new posts are published?
             </p>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md transition-colors">
-              Subscribe to Updates
-            </button>
+            <Link to="/contact" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-medium transition-colors inline-block">
+              Get in Touch
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -409,55 +408,8 @@ const BlogPage = () => {
   )
 }
 
-// Footer Component
-const Footer = () => {
-  return (
-    <footer className="bg-black border-t border-gray-800 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-xl font-serif font-bold text-white mb-4">On Her Skin Written</h3>
-            <p className="text-gray-400">
-              A novel in verse by Matthew Genovese. Poetry born from pain, 
-              where darkness meets verse.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-              <li><Link to="/reviews" className="text-gray-400 hover:text-white transition-colors">Reviews</Link></li>
-              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram size={20} />
-              </a>
-              <link to="/contact" className="text-gray-400 hover:text-white transition-colors">
-                <Mail size={20} />
-              </link>
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © 2025 Matthew Genovese. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
 // Main App Component
-function App() {
+const App = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   return (
@@ -465,21 +417,61 @@ function App() {
       <div className="min-h-screen bg-black text-white">
         <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/reviews" element={<ReviewsPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/contact" element={<ContactForm />} />
-          </Routes>
-        </AnimatePresence>
-        
-        <Footer />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/contact" element={<ContactForm />} />
+        </Routes>
+
+        {/* Footer */}
+        <footer className="bg-black/95 border-t border-gray-800 py-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-serif font-bold text-white mb-4">On Her Skin Written</h3>
+                <p className="text-gray-400 mb-4">
+                  A haunting tale of survival and revenge told entirely in rhyming verse.
+                </p>
+                <p className="text-gray-400">by Matthew Genovese</p>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-serif font-bold text-white mb-4">Quick Links</h4>
+                <div className="space-y-2">
+                  <Link to="/" className="block text-gray-400 hover:text-white transition-colors">Home</Link>
+                  <Link to="/about" className="block text-gray-400 hover:text-white transition-colors">About</Link>
+                  <Link to="/reviews" className="block text-gray-400 hover:text-white transition-colors">Reviews</Link>
+                  <Link to="/blog" className="block text-gray-400 hover:text-white transition-colors">Blog</Link>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-lg font-serif font-bold text-white mb-4">Connect</h4>
+                <div className="flex space-x-4">
+                  <a href="https://www.facebook.com/profile.php?id=61578807073690" className="text-gray-400 hover:text-white transition-colors">
+                    <Facebook size={20} />
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                    <Instagram size={20} />
+                  </a>
+                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
+                    <Mail size={20} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+              <p className="text-gray-400">
+                © 2024 Matthew Genovese. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </Router>
   )
 }
 
 export default App
-
