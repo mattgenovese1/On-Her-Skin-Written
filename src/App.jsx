@@ -1,239 +1,76 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Book, User, MessageSquare, Star, Menu, X, ExternalLink, Mail, Facebook, Instagram } from 'lucide-react'
-import './App.css'
-import bookCover from './assets/book_cover_concept.jpg'
-import ContactForm from './ContactForm.jsx'
+// src/App.jsx
 
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import './App.css';
+import bookCover from './assets/book_cover_concept.jpg';
+import BuyNowPage from './BuyNowPage';
+import ReadSamplePage from './ReadSamplePage';
+import BlogPostPage from './BlogPostPage';
+import BlogPage from './BlogPage'; // Import BlogPage
+import ContactForm from './ContactForm'; // Import ContactForm
 
-// Navigation Component
-const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
-  const location = useLocation()
-  
-  const navItems = [
-    { path: '/', label: 'Home', icon: Book },
-    { path: '/about', label: 'About the Author', icon: User },
-    { path: '/reviews', label: 'Reviews', icon: Star },
-    { path: '/blog', label: 'Blog', icon: MessageSquare }
-  ]
+// Simple SVG icons as components to replace the problematic imports
+const FacebookIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
 
-  return (
-    <nav className="bg-black/95 backdrop-blur-sm border-b border-red-900/20 sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-white font-serif text-xl font-bold">
-            On Her Skin Written
-          </Link>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map(({ path, label, icon: Icon }) => (
-              <Link
-                key={path}
-                to={path}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === path
-                    ? 'text-red-400 bg-red-900/20'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                }`}
-              >
-                <Icon size={16} />
-                <span>{label}</span>
-              </Link>
-            ))}
-          </div>
+const InstagramIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </svg>
+);
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-white"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+const MailIcon = ({ size = 24 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+  </svg>
+);
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden py-4 border-t border-gray-800"
-            >
-              {navItems.map(({ path, label, icon: Icon }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 text-sm font-medium transition-colors ${
-                    location.pathname === path
-                      ? 'text-red-400 bg-red-900/20'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                  }`}
-                >
-                  <Icon size={16} />
-                  <span>{label}</span>
-                </Link>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
-  )
-}
-
-// Home Page Component
+// Placeholder components (you will replace these with actual content later)
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center lg:text-left"
-            >
-              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
-                On Her Skin
-                <span className="block text-red-400">Written</span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-4 font-serif italic">
-                by Matthew Genovese
-              </p>
-              <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-                A haunting tale of survival and revenge told entirely in rhyming verse. 
-                This debut novel explores humanity's darkest impulses through Hannah's story—raw, 
-                unflinching, and unlike anything you've read before.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-medium transition-colors flex items-center justify-center space-x-2">
-                  <ExternalLink size={20} />
-                  <span>Buy Now</span>
-                </button>
-                <button className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-8 py-3 rounded-md font-medium transition-colors">
-                  Read Sample
-                </button>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex justify-center"
-            >
-              <div className="relative">
-                <img
-                  src={bookCover}
-                  alt="On Her Skin Written book cover"
-                  className="w-80 h-auto shadow-2xl rounded-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-              </div>
-            </motion.div>
-          </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
+    >
+      <div className="text-center max-w-3xl mx-auto">
+        <img src={bookCover} alt="On Her Skin Written Book Cover" className="w-64 h-auto mx-auto mb-8 rounded-lg shadow-lg border border-red-900/50" />
+        <h1 className="text-5xl font-serif font-bold mb-4">On Her Skin Written</h1>
+        <h2 className="text-2xl font-sans text-gray-300 mb-6">by Matthew Genovese</h2>
+        <p className="text-lg leading-relaxed mb-8">
+          A gripping narrative in rhyming verse, exploring humanity's darkest tendencies with unflinching realism, empathy, and dark humor.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <Link to="/buy-now" className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
+            Buy Now
+          </Link>
+          <Link to="/read-sample" className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
+            Read Sample
+          </Link>
         </div>
-      </section>
+      </div>
+    </motion.div>
+  );
+};
 
-      {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-serif font-bold text-white mb-6">
-              Poetry Born from Pain
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Where darkness meets verse, where poetry meets transgressive fiction. 
-              A literary experiment that transforms brutal reality into haunting art.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Unique Format",
-                description: "The only contemporary novel tackling these themes entirely in rhyming verse",
-                icon: "📖"
-              },
-              {
-                title: "Authentic Voice",
-                description: "Written by someone willing to explore society's most uncomfortable truths",
-                icon: "🎭"
-              },
-              {
-                title: "Literary Courage",
-                description: "Addresses subjects most fiction avoids with artistic integrity",
-                icon: "⚡"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-black/40 p-8 rounded-lg border border-gray-800 hover:border-red-900/50 transition-colors"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-serif font-bold text-white mb-4">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Content Warning Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-red-900/10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-2xl font-serif font-bold text-white mb-6">Content Advisory</h3>
-            <p className="text-gray-300 mb-4">
-              "On Her Skin Written" contains explicit depictions of sexual violence, domestic abuse, 
-              drug addiction, mental illness, and other mature themes. This book is intended for adult 
-              readers who appreciate challenging literature that doesn't shy away from difficult subjects.
-            </p>
-            <p className="text-red-400 font-medium">Reader discretion is strongly advised.</p>
-          </motion.div>
-        </div>
-      </section>
-    </div>
-  )
-}
-
-// About Page Component
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">About the Author</h1>
-          
-          <div className="bg-black/40 p-8 rounded-lg border border-gray-800 mb-8">
-            <h2 className="text-2xl font-serif font-bold text-white mb-6">Matthew Genovese</h2>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 mb-6 leading-relaxed">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
+    >
+      <h1 className="text-4xl font-serif font-bold mb-4">About Matthew Genovese</h1>
+      <p className="text-gray-300 mb-6 leading-relaxed">
                 Matthew Genovese is a debut novelist whose work explores the intersection of poetry and prose, 
                 beauty and brutality. Born from a desire to give voice to society's most marginalized stories, 
                 his writing doesn't shy away from difficult truths or challenging themes.
@@ -254,40 +91,20 @@ const AboutPage = () => {
                 When not writing, Genovese can be found contemplating the failures of 90s television and the 
                 decline of baseball—subjects that, perhaps surprisingly, find their way into his literary work.
               </p>
-            </div>
-          </div>
+    </motion.div>
+  );
+};
 
-          <div className="text-center">
-            <h3 className="text-xl font-serif font-bold text-white mb-4">Connect with Matthew</h3>
-            <div className="flex justify-center space-x-6">
-              <Link to='/contact' className="text-gray-400 hover:text-white transition-colors">
-                <Mail size={24} />
-              </Link>
-              <a href="https://www.facebook.com/profile.php?id=61578807073690" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook size={24} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">  
-                <Instagram size={24} />
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  )
-}
-
-// Reviews Page Component
 const ReviewsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">Reviews</h1>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
+    >
+     <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">Reviews</h1>
           
           <div className="text-center mb-12">
             <p className="text-xl text-gray-400">
@@ -313,165 +130,119 @@ const ReviewsPage = () => {
                 BookBub
               </a>
             </div>
-          </div>
+            </div>
+    </motion.div>
+  );
+};
 
-          <div className="bg-black/40 p-8 rounded-lg border border-gray-800">
-            <h2 className="text-2xl font-serif font-bold text-white mb-6">For Reviewers</h2>
-            <p className="text-gray-300 mb-4">
-              Are you a book blogger, reviewer, or literary critic interested in reviewing "On Her Skin Written"? 
-              We'd be happy to provide you with a review copy.
-            </p>
-            <p className="text-gray-300 mb-6">
-              Please note: This book contains mature themes and explicit content. 
-              It's intended for reviewers comfortable with transgressive fiction and dark literary themes.
-            </p>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md transition-colors">
-              Request Review Copy
-            </button>
-          </div>
-        </motion.div>
+// Fixed Footer component with working SVG icons
+const Footer = () => {
+  return (
+    <footer className="bg-black/95 text-gray-400 py-8 px-4 sm:px-6 lg:px-8 border-t border-red-900/20 text-center">
+      <div className="flex justify-center space-x-6 mb-4">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+          <FacebookIcon size={24} />
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+          <InstagramIcon size={24} />
+        </a>
+        <a href="mailto:mattgenovese@proton.me" className="text-gray-400 hover:text-white transition-colors">
+          <MailIcon size={24} />
+        </a>
       </div>
-    </div>
-  )
-}
+      <p>&copy; {new Date().getFullYear()} Matthew Genovese. All rights reserved.</p>
+    </footer>
+  );
+};
 
-// Blog Page Component
-const BlogPage = () => {
-  const blogPosts = [
-    {
-      title: "The Art of Writing in Verse: Why I Chose Rhyme",
-      date: "Coming Soon",
-      excerpt: "An exploration of the decision to write an entire novel in rhyming verse and the unique challenges it presented.",
-      slug: "art-of-writing-in-verse"
-    },
-    {
-      title: "Confronting Darkness: The Responsibility of Transgressive Fiction",
-      date: "Coming Soon",
-      excerpt: "A discussion on the ethical considerations of writing about difficult subjects and the importance of treating traumatic themes with respect.",
-      slug: "confronting-darkness"
-    },
-    {
-      title: "From Inspiration to Publication: The Journey of 'On Her Skin Written'",
-      date: "Coming Soon",
-      excerpt: "The story behind the story—how this novel came to be and what it means to finally share it with the world.",
-      slug: "inspiration-to-publication"
-    }
-  ]
+// Navigation Component
+const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
+  const location = useLocation();
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Reviews', path: '/reviews' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <nav className="bg-black/95 p-4 border-b border-red-900/20 sticky top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to="/" className="text-white text-2xl font-serif font-bold">
+          On Her Skin Written
+        </Link>
+        <div className="hidden md:flex space-x-6">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`text-gray-300 hover:text-white transition-colors ${location.pathname === item.path ? 'text-white border-b-2 border-red-700' : ''}`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+        <div className="md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      {isMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden bg-black/90 mt-4 rounded-lg shadow-lg"
         >
-          <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">Blog</h1>
-          
-          <div className="text-center mb-12">
-            <p className="text-xl text-gray-400">
-              Thoughts on writing, literature, and the creative process from Matthew Genovese.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {blogPosts.map((post, index) => (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-black/40 p-8 rounded-lg border border-gray-800 hover:border-red-900/50 transition-colors"
+          <div className="flex flex-col space-y-2 p-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block text-gray-300 hover:text-white transition-colors py-2 px-3 rounded ${location.pathname === item.path ? 'bg-red-900/30 text-white' : ''}`}
               >
-                <h2 className="text-2xl font-serif font-bold text-white mb-4">{post.title}</h2>
-                <p className="text-gray-400 mb-4">{post.date}</p>
-                <p className="text-gray-300 mb-6 leading-relaxed">{post.excerpt}</p>
-                <button className="text-red-400 hover:text-red-300 font-medium transition-colors">
-                  Read More →
-                </button>
-              </motion.article>
+                {item.name}
+              </Link>
             ))}
           </div>
-
-          <div className="mt-16 text-center">
-            <p className="text-gray-400 mb-6">
-              Want to be notified when new posts are published?
-            </p>
-            <Link to="/contact" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-medium transition-colors inline-block">
-              Get in Touch
-            </Link>
-          </div>
         </motion.div>
-      </div>
-    </div>
-  )
-}
+      )}
+    </nav>
+  );
+};
 
 // Main App Component
-const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Router>
       <div className="min-h-screen bg-black text-white">
         <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/contact" element={<ContactForm />} />
-        </Routes>
-
-        {/* Footer */}
-        <footer className="bg-black/95 border-t border-gray-800 py-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-serif font-bold text-white mb-4">On Her Skin Written</h3>
-                <p className="text-gray-400 mb-4">
-                  A haunting tale of survival and revenge told entirely in rhyming verse.
-                </p>
-                <p className="text-gray-400">by Matthew Genovese</p>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-serif font-bold text-white mb-4">Quick Links</h4>
-                <div className="space-y-2">
-                  <Link to="/" className="block text-gray-400 hover:text-white transition-colors">Home</Link>
-                  <Link to="/about" className="block text-gray-400 hover:text-white transition-colors">About</Link>
-                  <Link to="/reviews" className="block text-gray-400 hover:text-white transition-colors">Reviews</Link>
-                  <Link to="/blog" className="block text-gray-400 hover:text-white transition-colors">Blog</Link>
-                </div>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-serif font-bold text-white mb-4">Connect</h4>
-                <div className="flex space-x-4">
-                  <a href="https://www.facebook.com/profile.php?id=61578807073690" className="text-gray-400 hover:text-white transition-colors">
-                    <Facebook size={20} />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                    <Instagram size={20} />
-                  </a>
-                  <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
-                    <Mail size={20} />
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-              <p className="text-gray-400">
-                © 2024 Matthew Genovese. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/contact" element={<ContactForm />} />
+            <Route path="/buy-now" element={<BuyNowPage />} />
+            <Route path="/read-sample" element={<ReadSamplePage />} />
+          </Routes>
+        </AnimatePresence>
+        
+        <Footer />
       </div>
     </Router>
-  )
+  );
 }
 
 export default App
