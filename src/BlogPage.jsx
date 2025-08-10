@@ -1,69 +1,51 @@
-//```BlogPage.jsx
-import React, { useState, useEffect } from 'react';
+// BlogPage.jsx - Static Version
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios'; // Make sure you have axios installed: pnpm install axios
+
+// Static blog posts data - you can add/edit posts here
+const blogPosts = [
+  {
+    id: 1,
+    title: "The Journey Behind 'On Her Skin Written'",
+    date: "December 15, 2024",
+    excerpt: "Exploring the creative process behind my debut novel and the challenges of writing in rhyming verse about difficult subjects.",
+    slug: "journey-behind-on-her-skin-written",
+    content: `# The Journey Behind 'On Her Skin Written'
+
+Writing "On Her Skin Written" was both the most challenging and rewarding experience of my creative life. The decision to tackle such difficult subject matter through the lens of rhyming verse wasn't made lightly...
+
+[Add full content here]`
+  },
+  {
+    id: 2,
+    title: "Why Rhyming Verse for Dark Fiction?",
+    date: "December 10, 2024",
+    excerpt: "The unique choice to tell Hannah's story through poetry, and how rhythm and rhyme can enhance rather than diminish the impact of serious themes.",
+    slug: "why-rhyming-verse-dark-fiction",
+    content: `# Why Rhyming Verse for Dark Fiction?
+
+Many readers have asked why I chose to tell such a serious story through rhyming verse. Doesn't poetry make light of heavy subjects?
+
+The answer is quite the opposite...
+
+[Add full content here]`
+  },
+  {
+    id: 3,
+    title: "The Reality Behind the Fiction",
+    date: "December 5, 2024",
+    excerpt: "How real-world experiences and observations shaped the narrative, while maintaining the boundary between fiction and autobiography.",
+    slug: "reality-behind-fiction",
+    content: `# The Reality Behind the Fiction
+
+While "On Her Skin Written" is a work of fiction, it draws from the harsh realities that many people face every day...
+
+[Add full content here]`
+  }
+];
 
 const BlogPage = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        // Access the environment variable for Strapi API URL
-        let strapiApiUrl = import.meta.env.VITE_STRAPI_API_URL;
-        
-        // Ensure no trailing slash to prevent double slashes in URL
-        if (strapiApiUrl.endsWith('/')) {
-          strapiApiUrl = strapiApiUrl.slice(0, -1);
-        }
-
-        if (!strapiApiUrl) {
-          throw new Error("Strapi API URL is not defined in environment variables. Check your .env file.");
-        }
-
-        // Fetch posts from Strapi. populate=* fetches all related fields (like images if you add them)
-        const response = await axios.get(`${strapiApiUrl}/posts?populate=*`);
-        
-        // Strapi returns data in a 'data' array, with attributes inside each item
-        const formattedPosts = response.data.data.map(item => ({
-          id: item.id,
-          title: item.attributes.title,
-          date: new Date(item.attributes.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-          excerpt: item.attributes.excerpt,
-          slug: item.attributes.slug,
-          // Add other fields you might have, e.g., coverImage: item.attributes.coverImage.data.attributes.url
-        }));
-        setBlogPosts(formattedPosts);
-      } catch (err) {
-        console.error("Failed to fetch blog posts:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8 text-white text-center flex items-center justify-center">
-        <p>Loading blog posts...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8 text-red-500 text-center flex items-center justify-center">
-        <p>Error: {error}. Please check your Strapi API URL and ensure the server is running and permissions are set.</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -104,7 +86,7 @@ const BlogPage = () => {
                 </motion.article>
               ))
             ) : (
-              <p className="text-gray-400 text-center">No blog posts found. Start adding content in Strapi!</p>
+              <p className="text-gray-400 text-center">No blog posts available at this time.</p>
             )}
           </div>
         </motion.div>
