@@ -17,7 +17,13 @@ const BlogPostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const strapiApiUrl = import.meta.env.VITE_STRAPI_API_URL;
+        let strapiApiUrl = import.meta.env.VITE_STRAPI_API_URL;
+        
+        // Ensure no trailing slash to prevent double slashes in URL
+        if (strapiApiUrl.endsWith('/')) {
+          strapiApiUrl = strapiApiUrl.slice(0, -1);
+        }
+
         if (!strapiApiUrl) {
           throw new Error("Strapi API URL is not defined in environment variables.");
         }

@@ -8,8 +8,8 @@ import bookCover from './assets/book_cover_concept.jpg';
 import BuyNowPage from './BuyNowPage';
 import ReadSamplePage from './ReadSamplePage';
 import BlogPostPage from './BlogPostPage';
-import BlogPage from './BlogPage'; // Import BlogPage
-import ContactForm from './ContactForm'; // Import ContactForm
+import BlogPage from './BlogPage'; 
+import ContactForm from './ContactForm'; 
 
 // Simple SVG icons as components to replace the problematic imports
 const FacebookIcon = ({ size = 24 }) => (
