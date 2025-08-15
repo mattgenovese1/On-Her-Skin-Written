@@ -626,6 +626,65 @@ const ReadSamplePage = () => {
               of a registered nurse...<br />
               it doesn’t even hurt<br />
               when administered by an expert.”<br />
+            </p>
+            <p className="text-center">
+              14<br />
+              Penny Sinn<br />
+              is in<br />
+              the back of the van, just behind them;<br />
+              Seth called earlier from a pay phone,<br />
+              and gave directions so she could find them.<br />
+              Penny is sitting on a five-gallon bucket --<br />
+              fuck it,<br />
+              it’s a “bucket seat” --<br />
+              she doesn't mind<br />
+              that it’s all she could find<br />
+              among the power tools,<br />
+              sheet rock, and chunks of concrete.<br />
+              Penny is a busty redhead --<br />
+              voluptuous, it’s been said,<br />
+              though she’s not as pretty as Hannah.<br />
+              “T & A”<br />
+              for days and days,<br />
+              and in the back,<br />
+              "A" crack<br />
+              flossed with pink thong panties<br />
+              that split<br />
+              into a “Y” above<br />
+              Daisy Duke shorts that fit<br />
+              like a glove,<br />
+              they rise low but are high cut<br />
+              so that plenty<br />
+              of Penny’s<br />
+              butt<br />
+              sticks out the bottom.<br />
+              Penny shakes<br />
+              that “A” to make<br />
+              dollars leave pockets<br />
+              as sure as leaves fall in autumn...<br />
+              To be clear,<br />
+              Penny is an exotic dancer, i.e., a stripper...<br />
+              and also an escort, and a drug dealer,<br />
+              among many other things<br />
+              (hell, in the shower, she’s been known to sing).<br />
+              But a nurse, Penny certainly is not --<br />
+              this is something Seth, on the spot,<br />
+              just now, thought<br />
+              up,<br />
+              hoping Hannah would be<br />
+              down<br />
+              to move<br />
+              forward<br />
+              instead of holding<br />
+              back<br />
+              with trepidation<br />
+              in<br />
+              hesitation<br />
+              about trying<br />
+              out<br />
+              this risky route<br />
+              of administration,<br />
+              on this obviously not-so-special occasion.<br />
 
             </p>
           </div>
