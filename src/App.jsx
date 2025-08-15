@@ -509,7 +509,7 @@ const BuyNowPage = () => {
               Support the author directly. Signed copies available upon request.
             </p>
             <div className="space-y-4">
-              <p className="text-white font-semibold">Price: $15.99 + shipping</p>
+              <p className="text-white font-semibold">Price: $24.99 + shipping</p>
               <Link 
                 to="/contact" 
                 className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block"
@@ -548,26 +548,85 @@ const ReadSamplePage = () => {
         <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">Read a Sample</h1>
         
         <div className="bg-black/40 p-8 rounded-lg border border-gray-800 mb-8">
-          <h2 className="text-2xl font-serif font-bold text-white mb-6">From Chapter 1</h2>
+          <h1 className="text-center text-lg italic font-serif font-bold text-white mb-6"> A TRAINWRECK IN BFJ</h1>
           <div className="text-gray-300 leading-relaxed space-y-4 font-serif text-lg">
-            <p className="italic">
-              [Sample content will be added here - this is where you can paste excerpts from the book 
-              to give readers a taste of Matthew's unique rhyming verse style and the story's tone.]
+            <p className="text-center font-bold italic">
+            chapter VI<br />
+            13
             </p>
-            <p>
-              In shadows deep where silence dwells,<br />
-              A story waits that no one tells,<br />
-              Of Hannah's life, of pain and strife,<br />
-              Cut sharp upon her skin like knife.
+            <p className="text-center">
+              A paved expanse,<br />
+              a man made plain,<br />
+              asphalt plane --<br />
+              surface: plain,<br />
+              oil-stained;<br />
+              concrete, crushed up in pitch/tar;<br />
+              black as obsidian, pitch dark --<br />
+              except where, in yellow, marked:<br />
+              HHHHH HHHHH<br />
+              HHHHH HHHHH<br />
             </p>
-            <p>
-              The streets she walked were cold and gray,<br />
-              Where hope had long since slipped away,<br />
-              And in her eyes, a distant stare,<br />
-              Reflected all she'd learned to bear.
+            <p className="text-center">
+              A long, white cargo van,<br />
+              windowless in the back,<br />
+              is there, parked;<br />
+              behind its windshield<br />
+              a flint briefly sparks,<br />
+              illuminates a familiar face,<br />
+              here, in an unfamiliar place,<br />
+              in another time,<br />
+              is where we find<br />
+              Hannah<br />
+              and her man<br />
+              in the front seat of his van,<br />
+              drinking cheap beer with a ribbon on the can<br />
+              like it's a prize.<br />
             </p>
-            <p className="italic text-gray-400">
-              [This is just a sample - replace with actual excerpts from the book]
+            <p className="text-center">
+              After<br />
+              a hash brown dinner scattered,<br />
+              smothered in cheese, covered in onions, and chunked with ham,<br />
+              they wound up here, in Bumfuck, Japan,<br />
+              to her surprise.<br />
+              Tonight, it’s hot outside --<br />
+              the seat’s vinyl sticks to Hannah’s thighs;<br />
+              in the moonlight, sweat on her skin shines<br />
+              like silver, anodized.<br />
+              And now Hannah tries<br />
+              the radio...<br />
+              She’s reminded emphatically that the year is 1981 --<br />
+              nothing good, tonight, on the radio, hon;<br />
+              and there won’t be anywhere under the sun<br />
+              until roughly 1991 -- no kidding, not one.<br />
+              </p>
+              <p className="text-center">
+              They’ve been here since eight;<br />
+              now it’s late<br />
+              because they had to wait<br />
+              to be found by a lucky Penny...<br />
+              as golden as she is copper,<br />
+              as what Penny has to offer<br />
+              is a literal heart stopper.<br />
+              To most folks,<br />
+              it’s worth at least its weight in gold,<br />
+              and in 1981, about twice that, is for what it’s sold.<br />
+              Seth tells Hannah not to worry,<br />
+              yet again.<br />
+              </p>
+            <p className="text-center">
+              How many times now?<br />
+              Five? Ten?<br />
+              This time he clues her in<br />
+              that his friend,<br />
+              Penny Sinn,<br />
+              happens to be an RN<br />
+              so it’s “totally safe”.<br />
+              Seth explains,<br />
+              “We’ll be in the qualified hands<br />
+              of a registered nurse...<br />
+              it doesn’t even hurt<br />
+              when administered by an expert.”<br />
+
             </p>
           </div>
         </div>
