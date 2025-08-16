@@ -1,7 +1,7 @@
+```json
 {
-  "redirects": [
-    { "source": "http://onherskinwritten.com/:path*", "destination": "https://onherskinwritten.com/:path*", "permanent": true },
-    { "source": "https://www.onherskinwritten.com/:path*", "destination": "https://onherskinwritten.com/:path*", "permanent": true },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "on-her-skin-written.vercel.app" }], "destination": "https://onherskinwritten.com/:path*", "permanent": true }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+```
