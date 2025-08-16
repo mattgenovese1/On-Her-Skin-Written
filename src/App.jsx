@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import bookCover from './assets/book_cover_concept.jpg';
 
+
 // Simple SVG icons as components to replace the problematic imports
 const FacebookIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
