@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } 
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import bookCover from './assets/book_cover_concept.jpg';
+import Authorpic from './assets/autherpic.jpg'
 
 
 // Simple SVG icons as components to replace the problematic imports
@@ -176,6 +177,9 @@ const AboutPage = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
     >
+      <div className="text-center max-w-3xl mx-auto">
+        <img src={Authorpic} alt="picture of Author" className="w-64 h-auto mx-auto mb-8 rounded-lg shadow-lg border border-red-900/50" />
+       </div>
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-serif font-bold mb-8">About Matthew Genovese</h1>
         <div className="text-left space-y-6">
