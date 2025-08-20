@@ -33,35 +33,37 @@ const MailIcon = ({ size = 24 }) => (
 const blogPosts = [
   {
     id: 1,
-    title: "The Journey Behind 'On Her Skin Written'",
-    date: "December 15, 2024",
-    excerpt: "Exploring the creative process behind my debut novel and the challenges of writing in rhyming verse about difficult subjects.",
+    title: "Inspiration In The Abstract",
+    date: "August 19, 2025",
+    excerpt: "Exploring parts of what inspired me.",
     slug: "journey-behind-on-her-skin-written",
-    content: `# The Journey Behind 'On Her Skin Written'
+    content: `# Abstract Inspiration
 
-Writing "On Her Skin Written" was both the most challenging and rewarding experience of my creative life. The decision to tackle such difficult subject matter through the lens of rhyming verse wasn't made lightly.
+## One morning, a couple of months into the pandemic,
+ my roommate,Justin, reminds me that I committed to going to lunch with him today. He tells me we spoke about it the day before. This isn’t something I would typically volunteer myself for, so I am, at first, skeptical...
 
-## The Beginning
 
-The story of Hannah came to me not as a complete narrative, but as fragments—images, emotions, and rhythms that demanded to be written. I found myself drawn to the musicality of language as a way to process and present experiences that are often too raw for conventional prose.
+I have to admit, I don’t remember anything about the conversation he is referring to, so i can’t argue. And anyway, whether or not I agreed to it isn’t really the issue – what’s on my mind are the several milligrams of 5MEO PCP I insufflated just before he knocked on my door to remind me about lunch. I have very little experience with this rare chemical, but what I do know is that, when I took it a few days ago, it was a very intense dissociative anesthetic, and I am willing to bet that it is going to be a very intense dissociative anesthetic again today.
 
-## The Challenge of Form
+In other words, while I committed to lunch with Justin, 5MEO is a commitment, in and of itself, of a different sort - more than it is a “let’s do lunch” thing, it’s a “let’s see if we can astral project into another dimension” type of experience. So... Justin’s lunch plans may involve a little too much public exposure for my impending state of mind.
 
-Many people ask why I chose rhyming verse for such serious subject matter. The answer lies in the power of rhythm and rhyme to create emotional distance while simultaneously drawing the reader deeper into the experience. The formal constraints of verse forced me to find precise, powerful language for each moment in Hannah's story.
+Oh well, I suppose there is nothing to do about it now. I just shrug, and then from my desk drawer, I pull out  a small vial with ketamine, unscrew the cap, spoon out a line with the handle. I figure I may as well go for broke, since I know Justin won’t want to take it before driving, which is certainly sensible and warranted. By the time we get to the restaurant I am well on my way to planet motherfuckerWe can’t eat in the dining room at the restaurant (thank God) due to social distancing guidelines, of course, so we drive to a small, nearby park instead. The park is all ours, other than one woman running on a path that encircles a large pond at the park’s west side, and a large group of ducks sitting on the lake at the far end.
 
-## Research and Reality
+We sit down on a bench at the lake’s sandy shore, and as we eat, Justin laughs at the unenthusiastic way I am holding my burger and fries, understandably distracted by the three year old kid’s coloring book that is now my subjective reality; the sky is color-blocked indigo by a handful of turquoise clouds, and the lake is a dark shade of emerald green. The Styrofoam-like tactile hallucinations of the ketamine have all but abated, but the more visual hallucinogenic effects of the 5MEO are still going strong, and then emerges this incredible buzzing beneath -the surface of everything, something that is ordinarily imperceptible, filtered out by the veil of sober       perception , and not at all English-able... it’s a truth that is fundamental to even a rudimentary understanding of our universe, that is at all times emitting from the core of the Earth on a specific frequency that I am tuned into now fir the first time.
 
-While this is a work of fiction, it required extensive research into trauma, addiction, the criminal justice system, and the social services that are meant to help people like Hannah. Every aspect of her world needed to feel authentic, even when filtered through the lens of poetry.
+Then we see the ducks making their way to our side of the lake, across the green water’s great expanse. They are coming fast, for some reason, and they are making a fair amount of characteristic duck noises along the way. It’s not long before the impetus that is driving them across the water becomes evident... I haven’t taken the time to count them , but if there are fifty ducks on the water, then forty-nine of them have green heads, and only one of them, the duck swimming in front of the others, does not. We soon realize she is trying to evade the rest of the pack, as when she slows down, the other ducks – more, or less all of them - pile on top of her, forcing her, head-first underwater. She escapes them, still heading for our end of the pond, but when she comes near to our shore, they catch up to her and pile on top again, with her head back under the surface.
 
-## The Writing Process
+Some of you may recognize this as being part of their natural mating behavior, but I’m not  sure that there are typically nearly fifty males pursuing  just one female; it seems like a bit too many, both to my roommate and I, and as well, to the desperate hen. It would be very obvious to any observer that she is fighting for her life.
 
-Each chapter went through dozens of revisions. Finding the right rhythm, the perfect rhyme that didn't feel forced, the balance between beauty and brutality—it was like solving a complex puzzle where every piece had to fit perfectly.
+She escapes the malachite wave of male ducks, which is pursuing her like a gang of rowdy Hell’s Angels, and on this final desperate attempt, she makes it to the shore that we are now standing on, rather than as before, sitting on the bench in front of. And as she does, beneath her, little webbed feet are running in a blur, as they would look in an old cartoon or comic book, and they are powered by everything she has left in her. But the male ducks, some of them even taking flight briefly, are fast on her tail feathers, and they pile upon her, fighting for a chance to catch and release.
 
-## Why This Story Matters
+Her head is now planted firmly in the sand, under about two inches of water. My roommate tries kicking at the ducks, but it’s no use, as soon as one of them jumps off her, four or five more ducks pile on. These ducks aren’t budging.   Now the woman running on the path comes around, and as she gets a good look at the scene, she says “Oh how nice”, in an impossible-to-miss sarcastic tone. Then a seconds later, she shouts, “The bastards! They’re fucking killing her!” as she starts jogging away from the pond, across another part of the park, with a horrified look on her face. At this point we leave too – there’s nothing to do about it, and even if there is, we are too humble to interfere with nature. But this doesn’t feel right.
 
-Hannah's story is one that society often prefers to ignore. By telling it through verse, I hoped to create something that would stay with readers, that would make them think about the people we overlook and the systems that fail them.
+This is nature in the raw, and for this particular purpose, among others,  it can be brutally efficient. The need to reproduce can supersede the value of an individual life, that is, perhaps reluctantly, understood. But I’ll be goddamned if the mothers of any species deserve no better than this. Even if this is their normal mating behavior, that is perhaps more to my point. This isn’t about efficient procreation - at some point, libido overrides what’s necessary for reproduction, and in especially extreme cases, such as in the scene we just witnessed, reproduction becomes moot. A mother must survive to later give birth, or like when overcooking steak, the act defeats it’s own purpose.
 
-The journey of writing this book changed me as a person and as a writer. I hope it will resonate with readers who understand that sometimes the most important stories are the hardest ones to tell.`
+As we make it to the car, still tripping nuts and bolts, I am thinking of how one half of almost every species is at the mercy of the other half, and of how it seems that above all else, on every beast’s hierarchy of needs, is the insatiable urge to get off. This scene is not nearly 100% allegorical – humans are not perfectly analogous to ducks. But humans aren’t so different, and have in fact done far worse in the name of sexual dominance, desire, or fetish. 
+
+Throughout the rest of my trip, the image of the female duck plays out on the back of my eyelids every time I close them. With my mind in the state that it is in, I can’t help but ask myself, how could anyone think our natural world was intelligently designed? And if something intelligent did design the natural world, I’d like to meet him, so I can shake his hand, and then kick him in the balls.`
   },
   {
     id: 2,
@@ -178,7 +180,8 @@ const AboutPage = () => {
       className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
     >
       <div className="text-center max-w-3xl mx-auto">
-        <img src={Authorpic} alt="picture of Author" className="w-64 h-auto mx-auto mb-8 rounded-lg shadow-lg border border-red-900/50" />
+        <img src={Authorpic} alt="picture of Author" className="w-64 h-auto mx-auto mb-8 rounded-lg shadow-lg border border- #39FF14.-900/50" />
+        
        </div>
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-serif font-bold mb-8">About Matthew Genovese</h1>
