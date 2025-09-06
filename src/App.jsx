@@ -6,8 +6,10 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
-import bookCover from './assets/book_cover_concept.jpg';
+import bookCover from './assets/book_cover_concept.png';
 import Authorpic from './assets/autherpic.jpg'
+import { Analytics } from "@vercel/analytics/react"
+
 
 
 // Simple SVG icons as components to replace the problematic imports
@@ -150,7 +152,7 @@ const HomePage = () => {
       className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4"
     >
       <div className="text-center max-w-3xl mx-auto">
-        <img src={bookCover} alt="On Her Skin Written Book Cover" className="w-64 h-auto mx-auto mb-8 rounded-lg shadow-lg border border-red-900/50" />
+        <img src={bookCover} alt="On Her Skin Written Book Cover" className="w-120 h-auto mx-auto mb-8 rounded-lg shadow-lg shadow-white border-wide border-red-auto" />
         <h1 className="text-5xl font-serif font-bold mb-4">On Her Skin Written</h1>
         <h2 className="text-2xl font-sans text-gray-300 mb-6">by Matthew Genovese</h2>
         <p className="text-lg leading-relaxed mb-8">
