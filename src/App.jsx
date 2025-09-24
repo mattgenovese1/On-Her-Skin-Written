@@ -1,8 +1,5 @@
-
-
 // src/App.jsx - Corrected Version with Fixed Footer and No Strapi Dependencies
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
@@ -10,6 +7,11 @@ import bookCover from './assets/book_cover_concept.png';
 import Authorpic from './assets/autherpic.jpg'
 import { Analytics } from "@vercel/analytics/react"
 
+// Import new checkout components
+import CheckoutPage from './CheckoutPage';
+import CheckoutSuccessPage from './CheckoutSuccessPage';
+import CheckoutCancelPage from './CheckoutCancelPage';
+import BuyNowPage from './BuyNowPage';
 
 
 // Simple SVG icons as components to replace the problematic imports
@@ -156,7 +158,11 @@ const HomePage = () => {
         <h1 className="text-5xl font-serif font-bold mb-4">On Her Skin Written</h1>
         <h2 className="text-2xl font-sans text-gray-300 mb-6">by Matthew Genovese</h2>
         <p className="text-lg leading-relaxed mb-8">
-          A gripping narrative in rhyming verse, exploring humanity's darkest tendencies with unflinching realism, empathy, and dark humor.
+        In the gritty underbelly of human existence, where darkness meets desperation, Hannah's story unfolds in haunting verse. "On Her Skin Written" is a raw, unflinching exploration of humanity's most disturbing tendencies—rape, addiction, domestic abuse, homicide, incest, and bloodthirsty revenge—all told through the unique lens of rhyming narrative poetry.</p>
+        <p className="text-lg leading-relaxed mb-8">
+        Narrated by someone who knew Hannah intimately, this fictional tale weaves together themes of poverty, child abuse, drug addiction, mental illness, and the failures of our criminal justice system. With gritty realism tempered by unexpected empathy and dark humor, Matthew Genovese delivers a literary experience unlike any other.</p>
+        <p className="text-lg leading-relaxed mb-8">
+        This is not just a story—it's a visceral journey through the shadows of society, presented in a format that transforms brutal reality into haunting art. For readers who appreciate challenging literature that doesn't shy away from life's darkest corners, "On Her Skin Written" offers a unique and unforgettable reading experience.
         </p>
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <Link to="/buy-now" className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-lg">
@@ -242,7 +248,7 @@ const ReviewsPage = () => {
             Please consider leaving a review on:
           </p>
           <div className="grid md:grid-cols-3 gap-4">
-            <a href="https://a.co/d/aslk7MV" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
+            <a href="https://a.co/d/aslk7MV" target="_blank" rel="noopener noreferrer sponsored" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
               Amazon
             </a>
             <a href="https://www.goodreads.com/book/show/239557654-on-her-skin-written" className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-center transition-colors">
@@ -484,8 +490,8 @@ const ContactForm = () => {
   );
 };
 
-// BuyNowPage Component
-const BuyNowPage = () => {
+// Updated BuyNowPage Component with new checkout option
+const BuyNowPageInternal = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -497,39 +503,85 @@ const BuyNowPage = () => {
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-serif font-bold text-white mb-8">Buy "On Her Skin Written"</h1>
         
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {/* Direct Checkout Option - NEW */}
+          <div className="bg-black/40 p-8 rounded-lg border border-red-600 relative">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                RECOMMENDED
+              </span>
+            </div>
+            <h2 className="text-2xl font-serif font-bold text-white mb-4 mt-4">Direct Checkout</h2>
+            <p className="text-gray-300 mb-6">
+              Secure checkout with instant processing. Signed copies available upon request.
+            </p>
+            <div className="space-y-4 mb-6">
+              <p className="text-white font-semibold">Price: $24.99 + shipping</p>
+              <div className="text-sm text-gray-400">
+                <p>✓ Secure payment via Stripe</p>
+                <p>✓ Multiple shipping options</p>
+                <p>✓ Direct from author</p>
+                <p>✓ Order tracking included</p>
+              </div>
+            </div>
+            <Link 
+              to="/checkout" 
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block w-full"
+            >
+              Buy Now - Secure Checkout
+            </Link>
+          </div>
+
+          {/* Amazon Option */}
           <div className="bg-black/40 p-8 rounded-lg border border-gray-800">
             <h2 className="text-2xl font-serif font-bold text-white mb-4">Buy from Amazon</h2>
             <p className="text-gray-300 mb-6">
-              Purchase the book through Amazon for fast delivery and easy returns.
+              Purchase through Amazon for familiar checkout and Prime delivery.
             </p>
+            <div className="space-y-4 mb-6">
+              <p className="text-white font-semibold">Amazon pricing</p>
+              <div className="text-sm text-gray-400">
+                <p>✓ Amazon Prime eligible</p>
+                <p>✓ Fast delivery options</p>
+                <p>✓ Easy returns</p>
+                <p>✓ Amazon customer service</p>
+              </div>
+            </div>
             <a 
               href="https://a.co/d/aslk7MV" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block w-full"
             >
               Buy on Amazon
             </a>
           </div>
           
+          {/* Contact for Purchase Option */}
           <div className="bg-black/40 p-8 rounded-lg border border-gray-800">
-            <h2 className="text-2xl font-serif font-bold text-white mb-4">Buy Directly from Author</h2>
+            <h2 className="text-2xl font-serif font-bold text-white mb-4">Contact for Purchase</h2>
             <p className="text-gray-300 mb-6">
-              Support the author directly. Signed copies available upon request.
+              Prefer to arrange payment directly? Contact for alternative payment methods.
             </p>
-            <div className="space-y-4">
-              <p className="text-white font-semibold">Price: $24.99 + shipping</p>
-              <Link 
-                to="/contact" 
-                className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block"
-              >
-                Contact for Direct Purchase
-              </Link>
+            <div className="space-y-4 mb-6">
+              <p className="text-white font-semibold">Custom arrangements</p>
+              <div className="text-sm text-gray-400">
+                <p>✓ Alternative payment methods</p>
+                <p>✓ Bulk order discounts</p>
+                <p>✓ Special requests</p>
+                <p>✓ Personal consultation</p>
+              </div>
             </div>
+            <Link 
+              to="/contact" 
+              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block w-full"
+            >
+              Contact Author
+            </Link>
           </div>
         </div>
         
+        {/* Book Information */}
         <div className="bg-black/40 p-8 rounded-lg border border-gray-800">
           <h2 className="text-2xl font-serif font-bold text-white mb-4">About the Book</h2>
           <p className="text-gray-300 leading-relaxed">
@@ -543,6 +595,7 @@ const BuyNowPage = () => {
     </motion.div>
   );
 };
+
 
 // ReadSamplePage Component
 const ReadSamplePage = () => {
@@ -714,7 +767,7 @@ const ReadSamplePage = () => {
             <a 
               href="https://a.co/d/aslk7MV" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="noopener noreferrer sponsored"
               className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-block"
             >
               Buy on Amazon
@@ -746,13 +799,13 @@ const Footer = () => {
   );
 };
 
-// Navigation Component
+// Updated Navigation Component
 const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
+    { name: 'About The Book', path: '/' },
+    { name: 'About The Author', path: '/about' },
     { name: 'Reviews', path: '/reviews' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
@@ -807,8 +860,30 @@ const Navigation = ({ isMenuOpen, setIsMenuOpen }) => {
     </nav>
   );
 };
+// Animated routes wrapper to enable exit animations with React Router v6
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/buy-now" element={<BuyNowPage />} />
+        <Route path="/read-sample" element={<ReadSamplePage />} />
+        {/* New checkout routes */}
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+        <Route path="/checkout/cancel" element={<CheckoutCancelPage />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
-// Main App Component
+// Main App Component with updated routes
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -817,20 +892,10 @@ function App() {
       <div className="min-h-screen bg-black text-white">
         <Navigation isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/reviews" element={<ReviewsPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogPostPage />} />
-            <Route path="/contact" element={<ContactForm />} />
-            <Route path="/buy-now" element={<BuyNowPage />} />
-            <Route path="/read-sample" element={<ReadSamplePage />} />
-          </Routes>
-        </AnimatePresence>
+        <AnimatedRoutes />
         
         <Footer />
+        <Analytics />
       </div>
     </Router>
   );
